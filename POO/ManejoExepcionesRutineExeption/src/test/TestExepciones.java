@@ -1,0 +1,14 @@
+package test;
+
+import static aritmetica.Aritmetica.division;
+
+public class TestExepciones {
+
+    public static void main(String[] args) {
+
+        int resultado = 0;
+        resultado = division(10, 0);
+        System.out.println("Resultado: " + resultado);
+    }
+
+}
