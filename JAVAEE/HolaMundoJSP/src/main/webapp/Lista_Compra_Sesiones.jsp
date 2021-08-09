@@ -1,3 +1,4 @@
+<%@page import="com.sun.javafx.scene.control.skin.VirtualFlow.ArrayLinkedList"%>
 <%@ page import="java.util.*" %>
 <html>
 
@@ -32,33 +33,49 @@
             </p>
             <p>
                 <input type="submit" name="button" id="button" value="Enviar">
-                <br>             
+                <br>              
             </p>
         </form>
 
         <h2>Carro de la compra: </h2>
 
         <ul>
-            
-        <%
-            String[] elementos = request.getParameterValues("articulos");
 
-            if(elementos!=null){
-        
-            for (String elemTemp : elementos) {
+            <%
 
+                List<String> ListaElementos = (List<String>) session.getAttribute("misElementos");
+
+                if (ListaElementos == null) {
+
+                    ListaElementos = new ArrayList<String>();
+
+                    session.setAttribute("misElementos", ListaElementos);
+
+                }
+
+                String[] elementos = request.getParameterValues("articulos");
+
+                if (elementos != null) {
+
+                    for (String elemTemp : elementos) {
+
+                        ListaElementos.add(elemTemp);
+
+                    }
+
+                }
+
+                for (String elemTemp : ListaElementos) {
                     out.println("<li>" + elemTemp + "</li>");
 
                 }
 
-            }
 
+            %>
 
-        %>
-        
         </ul>
 
 
-</body>
+    </body>
 
 </html>
